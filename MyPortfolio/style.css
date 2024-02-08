@@ -1,0 +1,387 @@
+/* styles.css */
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  box-sizing: border-box;
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  background-color: #111111;
+  color: #fff;
+}
+
+#header{
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(images/bg4.jpg);
+  background-attachment: fixed;
+  background-position: 200px;
+  background-size: cover;
+  overflow: hidden;
+}
+
+nav{
+  padding: 10px 5%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+nav .fa-solid{
+  display: none ;
+ padding-top:35px;
+ 
+}
+.logo {
+  width: 100px;
+}
+nav ul li{
+display: inline-block;
+list-style: none;
+margin: 10px 20px;
+}
+nav ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  position:relative;
+  border-radius: 20px;
+  line-height: 50px;
+  padding: 5px 5px;
+  transition: background 0.5s;
+}
+nav ul li a:hover{
+  background: #0d36a5;
+}
+ 
+.header-text{
+  padding: 0px 5%;
+  margin-top: 20%;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.header-text h1{
+  font-size: 40px;
+  margin-top: 10px;
+  font-weight: normal;
+}
+.header-text h1 span{
+  color: #0d36a5;
+}
+.header-text p{
+  font-size: 25px;
+  color: #0d36a5;
+}
+.header-text h5{
+  font-weight: 100;
+  font-family: 'Arial';
+}
+/*about*/
+#about{
+  padding: 9% 5%;
+  padding-bottom: 12%;
+  color: #ababab;
+  font-family: 'Arial';
+  background-size: cover;
+  min-height: 100vh;
+  
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.about-col-1{
+  flex-basis: 35%;
+}
+.about-col-1 img{
+width: 80%;
+border-radius: 70px;
+}
+.about-col-2{
+  flex-basis: 60%;
+}
+.font-size-color{
+font-size: 40px;
+font-weight: normal;
+color: #fff;
+}
+.about-col-2 p{
+  font-family: 'arial';
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+.tab-titles{
+  display: flex;
+  margin: 20px 0 40px;
+}
+.tab-links{
+  margin-right: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+.tab-links::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background:#0d36a5;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  transition: 0.5s;
+}
+.tab-links.active-link::after{
+  width: 100%;
+}
+.tab-contents ul li{
+  list-style: none;
+  margin: 10px 0;
+  font-family: 'Arial'
+}
+.tab-contents ul li span{
+  color: #0d36a5;
+  font-size: 14px;
+  font-family: 'Arial';
+}
+.tab-contents{
+  display: none;
+}
+.tab-contents.active-tab{
+  display: block;
+}
+
+/*portfolio*/
+#porfolio{
+  background-position: 200px;
+  background: fixed;
+  min-height: 90vh;  
+}
+#portfolio .container{
+  padding: 5% 5%;
+}
+#portfolio .sub-title {
+  text-align: center;
+}
+.work-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+  z-index: 999;
+}
+.work{
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.work img{
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.5s;
+  
+}
+.layer{
+  height: 0;
+  width: 100%;
+  background: linear-gradient(rgba(0,0,0,0.6),#0d36a5);
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0,40px;
+  text-align: center;
+  transition: height 0.5s;
+}
+.layer h3{
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+.layer p{
+  font-family: 'arial';
+  font-size: small;
+  font-weight: 100;
+}
+.layer a{
+  margin-top: 20px;
+  color: #0d36a5;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 40px;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 0.5s;
+}
+.layer a:hover{
+  background: #111111;
+}
+.work:hover img{
+  transform: scale(1.1);
+}
+.work:hover .layer{
+height: 100%;
+}
+.btn{
+  display: block;
+  margin: 50px auto;
+  width: fit-content;
+  border: 1px solid #0d36a5;
+  padding: 14px 50px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.5s;
+}
+
+.btn:hover{
+  background: #0d36a5;
+}
+/*contact*/
+#contact{
+  background-image: url(images/bg2.jpg);
+  padding: 5% 5%;
+  background-attachment: fixed;
+  background: position  200px;
+  background-size: cover;
+}
+#contact .sub-title{
+  text-align: center;
+  margin-bottom: 3.5rem;
+  padding: 0;
+  font-weight: normal;
+  font-size: 40px;
+  color: #0d36a5;
+}
+.contact-left{
+  flex-basis: 40%;
+}
+.contact-right{
+  flex-basis: 60%;
+}
+.contact-left h3{
+  font-weight: normal;
+  margin-left: 50px;
+  font-size: 25px;
+}
+.contact-left p{
+  margin-top: 30px;
+  font-family: 'Arial';
+}
+.contact-left p i{
+  color: #0d36a5;
+  margin-right: 15px;
+  font-size: 25px;
+}
+.social-icons{
+  margin-top: 30px;
+}
+.social-icons a{
+  text-decoration: none;
+  font-size: 30px;
+  margin-right: 15px;
+  color: #ababab;
+  display: inline-block;
+  transition: color 0.5s, transform 0.5s;
+}
+.social-icons a:hover{
+  color: #0d36a5;
+  transform:translateY(-5px);
+}
+.btn.btn2{
+  display: inline-block;
+  background: #111111;
+  transition: background 0.5s;
+  margin-top: 10px;
+  font-family: 'Arial';
+
+}
+button{
+  font-size: 15px;
+}
+.btn.btn2:hover{
+  background: #0d36a5;
+}
+.contact-right form{
+  width: 100%;
+}
+form input, form textarea{
+  width: 100%;
+  border: 0;
+  outline:none;
+  background: #000000c5;
+  padding: 15px;
+  margin: 15px 0;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-family: 'Arial';
+  border-radius: 6px;
+} 
+.copyright{
+  width: 100%;
+  padding: 25px 0px;
+  text-align: center;
+  background: #000000;
+}
+/*FOR SMALL SCREEN*/
+@media only screen and (max-width: 600px){
+  #header{
+    background-image: url(images/bg4.jpg);
+    background-position: 20%;
+   
+  }
+  .header-text{
+    margin-top: 60%;
+    font-size: 16px;
+  }
+  .header-text h1{
+    font-size: 30px;
+  }
+  nav .fa-solid{
+    display: block;
+    font-size: 25px ;
+  }
+  nav ul {
+    background:#0d36a5;
+    position: fixed;
+    top: 0;
+    right: -150px;
+    width: 150px;
+    height: 100vh;
+    padding-top: 50px;
+    z-index: 2;
+    transition: 0.5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 25px;
+  }
+  nav ul .fa-solid{
+    position: absolute;
+    top: 0;
+    left: 25px;
+    cursor: pointer;
+  }
+  .contact-left, .contact-right{
+    flex-basis: 100%;
+  }
+}
+
+
