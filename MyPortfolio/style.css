@@ -2,7 +2,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Roboto';
+  font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 html{
@@ -158,101 +158,120 @@ color: #fff;
 .tab-contents.active-tab{
   display: block;
 }
+.fa-html5{
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.fa-css3-alt{
+  font-size: 20px;
+  padding-left: 20px;
+}
+.fa-bootstrap{
+  font-size: 20px;
+  padding-left: 20px;
+}
 
-/*portfolio*/
-#porfolio{
+/*Project*/
+#projects{
   background-position: 200px;
   background: fixed;
-  min-height: 90vh;  
+   padding: 5% 5%;
 }
-#portfolio .container{
-  padding: 5% 5%;
-}
-#portfolio .sub-title {
-  text-align: center;
-}
-.work-list{
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  grid-gap: 40px;
-  margin-top: 50px;
-  z-index: 999;
-}
-.work{
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-}
-.work img{
-  width: 100%;
-  border-radius: 10px;
-  display: block;
-  transition: transform 0.5s;
-  
-}
-.layer{
-  height: 0;
-  width: 100%;
-  background: linear-gradient(rgba(0,0,0,0.6),#0d36a5);
-  border-radius: 10px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  overflow: hidden;
+#projects .container{
+  min-height: 80vh;  
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  flex-direction: column;
-  padding: 0,40px;
-  text-align: center;
-  transition: height 0.5s;
-}
-.layer h3{
-  font-weight: normal;
-  margin-bottom: 20px;
-}
-.layer p{
-  font-family: 'arial';
-  font-size: small;
-  font-weight: 100;
-}
-.layer a{
-  margin-top: 20px;
-  color: #0d36a5;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 40px;
-  background: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  text-align: center;
-  transition: background 0.5s;
-}
-.layer a:hover{
-  background: #111111;
-}
-.work:hover img{
-  transform: scale(1.1);
-}
-.work:hover .layer{
-height: 100%;
-}
-.btn{
-  display: block;
-  margin: 50px auto;
-  width: fit-content;
-  border: 1px solid #0d36a5;
-  padding: 14px 50px;
-  border-radius: 6px;
-  text-decoration: none;
-  color: #fff;
-  transition: background 0.5s;
+ padding-top: 10%;
 }
 
-.btn:hover{
+#projects .sub-title {
+  text-align: center;
+}
+.slide-container{
+  max-width: 1120px;
+  width: 100%;
+}
+.slide-content{
+  margin: 0 40px;
+}
+.card{
+  border-radius: 25px;
+  background-color:#252424;
+  width: 320px;
+}
+.image-content , .card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content{
+  position: relative;
+  row-gap: 5px; 
+  padding: 25px 0;
+}
+.overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0d36a5;
+  border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+  background-color: #0d36a5;
+}
+.overlay::after{
+  border-radius: 0 25px 0 0;
+  background-color: #252424;
+}
+.card-image{
+  position:relative;
+  height: 150px;
+  width: 150px; 
+  padding: 3px;
+}
+.card-image .card-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10%;
+  border:2px solid #ffffff;
+}
+.name{
+  font-size: 18px;
+  font-weight: 500;
+}
+.description{
+  font-size: 14px;
+  text-align: center;
+  color: #c0bcbc;
+}
+.open{
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+  background-color: #000000;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: background 0.5s;
+  border: 1px solid #0d36a5;
+}
+.open:hover{  
   background: #0d36a5;
 }
+
 /*contact*/
 #contact{
   background-image: url(images/bg2.jpg);
@@ -304,13 +323,27 @@ height: 100%;
   color: #0d36a5;
   transform:translateY(-5px);
 }
+.btn{
+  display: block;
+  margin: 50px auto;
+  width: fit-content;
+  border: 1px solid #0d36a5;
+  padding: 14px 50px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.5s;
+}
+
+.btn:hover{
+  background: #0d36a5;
+}
 .btn.btn2{
   display: inline-block;
   background: #111111;
   transition: background 0.5s;
   margin-top: 10px;
   font-family: 'Arial';
-
 }
 button{
   font-size: 15px;

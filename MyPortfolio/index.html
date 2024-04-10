@@ -1,151 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://kit.fontawesome.com/c8fb92272e.js" crossorigin="anonymous"></script>
-    <script src="script.js" defer></script>
-</head>
-<body>
-   <div id="header">
-   <div class="container">
-    <nav>
-       <img src="images/logo.png" class="logo">
-        <ul id="sidebar">
-            <li><a href="#header">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-       
-        </ul>
-         <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-    </nav>
-    <div class="header-text">
-        <p>Front-end Developer</p>
-        <h1>Hi, I'm <span>Mark</span> from Philippines</h1>
-        <h5>A front-end developer builds the front-end portion of websites <br>and web applications—the part users 
-            <br>see and interact with. </h5>
-    </div>
-   </div>
-   </div>
-   <!---about--->
-   <div id="about">
-    <div >
-        <div class="row">
-            <div class="about-col-1">
-                <img src="images/4_22-05-02_12-47-16-331.jpg">
-            </div>
-            <div class="about-col-2">
-                <h1 class="font-size-color">About Me</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas nesciunt
-                     ullam quidem suscipit repellendus, reprehenderit nisi 
-                     asperiores at excepturi commodi quam officiis dolor cupiditate iste 
-                     praesentium! Aliquam sint hic tempore.</p>
 
-                     <div class="tab-titles">
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.png" class="logo">
+                <ul id="sidebar">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Student to Front-end Developer</p>
+                <h1>Hi, I'm <span>Mark</span> Student from BUP</h1>
+                <h5>A second year Student from BUP that want to be a
+                    <br>Front-end Developer some day.
+                </h5>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/markjohn.oliva27"><i class="fa-brands fa-facebook"
+                            style="color: #2470f5;"></i></a>
+                    <a href="https://www.instagram.com/_mj_oliva/"><i class="fa-brands fa-instagram"
+                            style="color: #fb2852;"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin" style="color: #1a63e0;"></i></a>
+                    <a href="https://github.com/Mjoliva027"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---about--->
+    <div id="about">
+        <div>
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/4_22-05-02_12-47-16-331.jpg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="font-size-color">About Me</h1>
+                    <p>I'm dedicated to learning and growing profesionally. I thrive in dynamic environments where
+                        I can collaborate and take on new challenges. I'm eager to apply my passion for learning to
+                        contribute effectively to projects and achieve success.
+                    </p>
+
+                    <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
                         <p class="tab-links" onclick="opentab('education')">Education</p>
-                     </div>
-                     <!--for skills-->
-                     <div class="tab-contents active-tab" id="skills">
+                    </div>
+                    <!--for skills-->
+                    <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li><span>Web development</span><br>webpage development</li>
-                            <li><span>UI/UX</span><br>Designing we/app interfaces</li>
-                            
+                            <li><i class="fa-brands fa-html5" style="color: #fd9117;"></i> HTML
+                                <i class="fa-brands fa-css3-alt" style="color: #74C0FC;"></i> CSS
+                                <i class="fa-brands fa-bootstrap" style="color: #7100bd;"></i> Bootstrap
+                            </li>
+
+                           
+
+
                         </ul>
-                     </div>
-                     <!--for experience-->
-                     <div class="tab-contents " id="experience">
+                    </div>
+
+                    <!--for experience-->
+                    <div class="tab-contents " id="experience">
                         <ul>
-                            <li><span>Web development</span><br>webpage development</li>
+                            <li><span>2024</span><br>basic webpage development</li>
                             <li><span>UI/UX</span><br>Designing Web/app interfaces</li>
-                            
+
                         </ul>
-                     </div>
-                     <!--for education-->
-                     <div class="tab-contents" id="education">
+                    </div>
+                    <!--for education-->
+                    <div class="tab-contents" id="education">
                         <ul>
                             <li><span>2022</span><br>Marcial O. Ranola Memorial School</li>
                             <li><span>2026</span><br>Bicol University Polangui</li>
-                            
+
                         </ul>
-                     </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-   </div>
-   <!--portfolio-->
-   <div id="portfolio">
-    <div class="container">
-        <h1 class="sub-title">My Work</h1>
-        <div class="work-list">
-            <div class="work">
-                <img src="images/work1 appdesign.jpg">
-                <div class="layer">
-                    <h3>Application</h3>
-                    <p>example only</p>
-                         <a href="#"><i class="fa-solid fa-square-arrow-up-right"></i></a>
+    <!--Projects-->
+    <div id="projects">
+        <h1 class="sub-title">Projects</h1>
+        <div class="container">
+            <div class="slide-container swiper">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper">
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <Span class="overlay"></Span>
+
+                                <div class="card-image">
+                                    <img src="/images/shoe_haven.jpg" alt="" class="card-img">
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="name">Shoe Haven</h2>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet <br> consectetur adipisicing <br>
+                                    elit. Debitis iure voluptates
+                                    doloribus <br>perferendis enim
+                                </p>
+                                <a href="/images/shoe_haven.jpg"><button class="open">open</button></a>
+
+                            </div>
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <Span class="overlay"></Span>
+
+                                <div class="card-image">
+                                    <img src="/images/shoe_login.jpg" alt="" class="card-img">
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="name">Login Page</h2>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet <br> consectetur adipisicing <br>
+                                    elit. Debitis iure voluptates
+                                    doloribus <br>perferendis enim
+                                </p>
+                                <a href="/images/shoe_login.jpg"> <button class="open">open</button> </a>
+
+                            </div>
+                        </div>
+
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <Span class="overlay"></Span>
+
+                                <div class="card-image">
+                                    <img src="/images/shoe_signup.jpg" alt="" class="card-img">
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="name">Sign up Page</h2>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet <br> consectetur adipisicing <br>
+                                    elit. Debitis iure voluptates
+                                    doloribus <br>perferendis enim
+                                </p>
+                                <a href="/images/shoe_signup.jpg"><button class="open">open</button></a>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
-
-            <div class="work">
-                <img src="images/work2 webpage.jpg">
-                <div class="layer">
-                    <h3>Web page</h3>
-                    <p>Website Portfolio</p>
-                         <a href="#"><i class="fa-solid fa-square-arrow-up-right"></i></a>
-                </div>
-
-            </div>
-
-            <div class="work">
-                <img src="images/work3 webpage shop.jpg">
-                <div class="layer">
-                    <h3>online shop site</h3>
-                    <p>example only</p>
-                         <a href="#"><i class="fa-solid fa-square-arrow-up-right"></i></a>
-                </div>
-            </div>
-
         </div>
-        <a href="#" class="btn" id="btn">See more</a>
     </div>
-   </div>
-   <!--contact-->
-   <div id="contact">
-    <div>
-        <h1 class="sub-title">Lets talk</h1>
-        <div class="row">
-            <div class="contact-left">
-                <h3>Contact Information</h3>
-                <p> <i class="fa-solid fa-paper-plane"></i> markjohnoliva27@gmail.com</p>
-                <p> <i class="fa-solid fa-phone"></i> 09914815998</p>
-                <p><i class="fa-solid fa-location-dot"></i> Inaman Pequeño Guinobatan Albay</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/markjohn.oliva27"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/_mj_oliva/"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+    <!--contact-->
+    <div id="contact">
+        <div>
+            <h1 class="sub-title">Lets talk</h1>
+            <div class="row">
+                <div class="contact-left">
+                    <h3>Contact Information</h3>
+                    <p> <i class="fa-solid fa-paper-plane"></i> markjohnoliva27@gmail.com</p>
+                    <p> <i class="fa-solid fa-phone"></i> 1234567890</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Inaman Pequeño Guinobatan Albay</p>
+                    <a href="" download class="btn btn2">Download CV</a>
                 </div>
-                <a href="#" download class="btn btn2">Download CV</a>
-            </div>
-            <div class="contact-right">
-                <form>
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn2">send</button>
-                </form>
+                <div class="contact-right">
+                    <form>
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-   </div>
-   <div class="copyright">
-      <p>Copyright © 2023 Mark</p>
+    <div class="copyright">
+        <p>Copyright © 2023 Mark</p>
     </div>
-
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
+
 </html>
