@@ -3,6 +3,8 @@ session_start();
 include("connection.php");
 include("function.php");
 
+$user_id = $_SESSION['user_id'];
+
 //check if the user is click the post button
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -13,15 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $query = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
         $result = mysqli_query($con, $query);
 
-        $result = mysqli_query($con, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             $user_data = mysqli_fetch_assoc($result);
 
             if ($user_data['password'] === $password) {
-                // Set user_id in the session and redirect
-                $_SESSION['user_id'] = $user_data['user_id'];
-                header("location: product.php");
-                die;
+                // Check user type and redirect accordingly
+                if ($user_data['user_type'] === 'u') {
+                    // Regular user, redirect to product page
+                    $_SESSION['user_id'] = $user_data['user_id'];
+                    header("location: product.php");
+                    die;
+                } elseif ($user_data['user_type'] === 'a') {
+                    // Admin user, redirect to admin page
+                    $_SESSION['user_id'] = $user_data['user_id'];
+                    header("location: admin.php");
+                    die;
+                }
             } else {
                 // Set an error message for incorrect password
                 $error = "Incorrect password. Please try again.";

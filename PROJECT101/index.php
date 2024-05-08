@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 include("function.php");
 
-$user_data = check_login($con);
+
 
 $_SESSION;
 
@@ -77,14 +77,14 @@ $_SESSION;
         <div class="swiper-slide">Slide 6</div>
         <div class="swiper-slide">Slide 7</div>
         <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div> 
+        <div class="swiper-slide">Slide 9</div>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-pagination"></div>
     </div>
 
-      <h4 class="fw-semibold ps-5">Latest Drop</h4>
+    <h4 class="fw-semibold ps-5">Latest Drop</h4>
     <div class="row row-cols-2   row-cols-md-6 g-4 ps-4">
       <div class="col">
         <div class="card mh-100">
@@ -98,7 +98,7 @@ $_SESSION;
 
       <div class="col">
         <div class="card mh-100">
-          <img src="https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_411,c_limit/4f37fca8-6bce-43e7-ad07-f57ae3c13142/air-force-1-07-shoes-WrLlWX.png" class="card-img-top mh-100"  alt="...">
+          <img src="https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_411,c_limit/4f37fca8-6bce-43e7-ad07-f57ae3c13142/air-force-1-07-shoes-WrLlWX.png" class="card-img-top mh-100" alt="...">
           <div class="card-body">
             <h6 class="card-title">Nike Air Force 1</h6>
             <p class="card-text fw-semibold">₱5,495.00 PHP</p>
@@ -115,7 +115,7 @@ $_SESSION;
           </div>
         </div>
       </div>
-      
+
       <div class="col">
         <div class="card mh-100">
           <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/71a00703e8c14c76aa8471445a9eaf40_9366/Ultrabounce_Shoes_Blue_HP5783_HM1.jpg" class="card-img-top" alt="...">
@@ -135,7 +135,7 @@ $_SESSION;
           </div>
         </div>
       </div>
-      
+
       <div class="col">
         <div class="card mh-100">
           <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/71a00703e8c14c76aa8471445a9eaf40_9366/Ultrabounce_Shoes_Blue_HP5783_HM1.jpg" class="card-img-top" alt="...">

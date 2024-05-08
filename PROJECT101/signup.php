@@ -6,7 +6,7 @@ include("function.php");
 //check if the user is click the post button
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $lastname = $_POST['fullname'];
+    $fullname = $_POST['fullname'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $password = $_POST['password'];
 
     //save to database
-    $user_id = random_num(15);
-    $query = "INSERT INTO `users`( `user_id`, `fullname`, `age`, `gender`, `email`, `username`, `password`) 
-        VALUES ('$user_id','$fullname','$age','$gender','$email','$username','$password')";
+   
+    $query = "INSERT INTO `users`(`fullname`, `age`, `gender`, `email`, `username`, `password`) 
+        VALUES ('$fullname','$age','$gender','$email','$username','$password')";
 
     mysqli_query($con, $query);
 

@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 include("function.php");
 
-$user_data = check_login($con);
+
 
 $_SESSION;
 
@@ -26,7 +26,7 @@ $_SESSION;
 
 <body>
 
-<?php require_once('include/nav.php');?>
+    <?php require_once('include/nav.php'); ?>
     <!-- Swiper -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
@@ -68,7 +68,7 @@ $_SESSION;
                                 </div>
                                 <div class="card-body">
                                     <small class="card-title"><?php echo $prod_name; ?></small>
-                                    <p class="card-text fw-semibold"><?php echo $prod_price; ?></p>
+                                    <p class="card-text fw-semibold">₱<?php echo $prod_price; ?></p>
                                 </div>
                         </a>
                     </div>
