@@ -3,8 +3,6 @@ session_start();
 include("connection.php");
 include("function.php");
 
-$user_id = $_SESSION['user_id'];
-
 //check if the user is click the post button
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -28,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 } elseif ($user_data['user_type'] === 'a') {
                     // Admin user, redirect to admin page
                     $_SESSION['user_id'] = $user_data['user_id'];
-                    header("location: admin.php");
+                    header("location: admin-main/admin/adminpage.php");
                     die;
                 }
             } else {

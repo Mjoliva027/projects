@@ -1,0 +1,324 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+/* Variable Declarations */
+:root {
+   --blue: #2980b9;
+   --red: rgb(255, 0, 0);
+   --orange: orange;
+   --black: #333;
+   --white: #fff;
+   --bg-color: #eee;
+   --dark-bg: rgba(0, 0, 0, .7);
+   --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+   --border: .1rem solid #999;
+}
+
+/* General Styling */
+* {
+   font-family: 'Poppins', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   outline: none;
+   border: none;
+   text-decoration: none;
+   text-transform: capitalize;
+color: rgb(149, 184, 255);
+}
+
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+.container {
+   max-width: 1200px;
+   margin: 0 auto;
+   margin-top: 50px;
+}
+
+.small-box{
+   height: 120px;
+   width: 300px ;
+   text-align: center;
+   padding-top: 25px;
+   margin-left: 400px;
+}
+
+.small-box .inner p {
+   font-size: 16px;
+   color: #333;
+}
+
+.heading{
+   text-align: center;
+   font-size: 3.5rem;
+   text-transform: uppercase;
+   color:var(--black);
+   margin-bottom: 2rem;
+}
+
+.btn,
+.option-btn,
+.delete-btn{
+   display: block;
+   width: 100%;
+   text-align: center;
+   background-color: var(--blue);
+   color:var(--white);
+   font-size: 1.7rem;
+   padding:1.2rem 3rem;
+   border-radius: .5rem;
+   cursor: pointer;
+   margin-top: 1rem;
+}
+
+.btn:hover,
+.option-btn:hover,
+.delete-btn:hover{
+   background-color: var(--black);
+}
+
+.option-btn i,
+.delete-btn i{
+   padding-right: .5rem;
+}
+
+.option-btn{
+   background-color: var(--orange);
+}
+
+.delete-btn{
+   margin-top: 0;
+   background-color: var(--red);
+}
+
+.message{
+   background-color: var(--blue);
+   position: sticky;
+   top:0; left:0;
+   z-index: 10000;
+   border-radius: .5rem;
+   background-color: var(--white);
+   padding:1.5rem 2rem;
+   margin:0 auto;
+   max-width: 1200px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap:1.5rem;
+}
+
+.message span{
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.message i{
+   font-size: 2.5rem;
+   color:var(--black);
+   cursor: pointer;
+}
+
+.message i:hover{
+   color:var(--red);
+}
+
+.header{
+   background: linear-gradient(to right, #f9c596 0%, #fc5d9d 100%);
+   position: sticky;
+   top:0; left:0;
+   z-index: 1000;
+}
+
+
+#menu-btn{
+   margin-left: 2rem;
+   font-size: 3rem;
+   cursor: pointer;
+   color:var(--white);
+   display: none;
+}
+
+.add-product-form{
+   max-width: 50rem;
+   background-color: var(--bg-color);
+   border-radius: .5rem;
+   padding:2rem;
+   margin:0 auto;
+   margin-top: 2rem;
+}
+
+.add-product-form h3{
+   font-size: 2.5rem;
+   margin-bottom: 1rem;
+   color:var(--black);
+   text-transform: uppercase;
+   text-align: center;
+}
+
+.add-product-form .box{
+   text-transform: none;
+   padding:1.2rem 1.4rem;
+   font-size: 1.7rem;
+   color:var(--black);
+   border-radius: .5rem;
+   background-color: var(--white);
+   margin:1rem 0;
+   width: 100%;
+}
+
+.display-product-table table{
+   width: 100%;
+   text-align: center;
+}
+
+.display-product-table table thead th{
+   padding:1.5rem;
+   font-size: 2rem;
+   background-color: var(--black);
+   color:var(--white);
+}
+
+.display-product-table table td{
+   padding:1.5rem;
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.display-product-table table td:first-child{
+   padding:0;
+}
+
+.display-product-table table tr:nth-child(even){
+   background-color: var(--bg-color);
+}
+
+.display-product-table .empty{
+   margin-bottom: 2rem;
+   text-align: center;
+   background-color: var(--bg-color);
+   color:var(--black);
+   font-size: 2rem;
+   padding:1.5rem;
+}
+
+.edit-form-container{
+   position: fixed;
+   top:0; left:0;
+   z-index: 1100;
+   background-color: var(--dark-bg);
+   padding:2rem;
+   display: none;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   width: 100%;
+}
+
+.edit-form-container form{
+   width: 50rem;
+   border-radius: .5rem;
+   background-color: var(--white);
+   text-align: center;
+   padding:2rem;
+}
+
+.edit-form-container form .box{
+   width: 100%;
+   background-color: var(--bg-color);
+   border-radius: .5rem;
+   margin:1rem 0;
+   font-size: 1.7rem;
+   color:var(--black);
+   padding:1.2rem 1.4rem;
+   text-transform: none;
+}
+
+
+
+/* Order Details Styling */
+#ordersBtn {
+   max-inline-size: 1200px;
+   margin: 0 auto;
+   padding: 2rem;
+}
+
+#ordersBtn h2 {
+   font-size: 3rem;
+   text-transform: uppercase;
+   color: var(--black);
+   margin-bottom: 2rem;
+}
+
+.table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+.table th,
+.table td {
+   padding: 1.5rem;
+   font-size: 2rem;
+   color: var(--black);
+}
+
+.table th {
+   background-color: var(--black);
+   color: var(--white);
+}
+
+.table td {
+   border-bottom: 0.1rem solid #999;
+}
+
+.table tbody tr:nth-child(even) {
+   background-color: var(--bg-color);
+}
+
+.btn {
+   padding: 1.2rem 3rem;
+   font-size: 1.7rem;
+   border-radius: 0.5rem;
+   cursor: pointer;
+}
+
+.btn.btn-danger {
+   background-color: var(--red);
+   color: var(--white);
+}
+
+.btn.btn-success {
+   background-color: var(--blue);
+   color: var(--white);
+}
+
+.btn:hover {
+   background-color: var(--black);
+}
+
+/* Additional Styling */
+.client {
+   font-size: 3rem;
+   font-weight: bold;
+   text-align: center;
+   margin-top: 2rem;
+   color: linear-gradient(to right, #f9c596 0%, #fc5d9d 100%);
+}
+
+/* For table header and data */
+.table th.text-center,
+.table td.text-center {
+   text-align: center;
+}
+
+/* Style for Total Sales */
+#ordersBtn p.total-sales {
+   font-size: 2.5rem;
+   font-weight: bold;
+   text-align: right;
+   margin-top: 2rem;
+   color: var(--blue);
+}
+ 
