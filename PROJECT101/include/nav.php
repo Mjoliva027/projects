@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="product.php">
@@ -26,12 +27,13 @@
                             <a class="nav-link" href="#contact">Contact Us</a>
                         </li>
                     </ul>
-                    <form class="d-flex " style="padding-right: 10%;" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Find your pairs" aria-label="Search">
-                        <button class="btn btn-out;ine-primary " type="submit">Search</button>
-                    </form>
+                    <form class="d-flex" style="padding-right: 10%;" role="search" action="search.php" method="GET">
+    <input class="form-control me-2" type="search" placeholder="Find your pairs" aria-label="Search" name="query">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+
                     <a class="text-decoration-none text-success" href="cart.php"><i class="fa-solid fa-cart-shopping fs-3 mt-1"></i></a>
-                    <a class="text-decoration-none text-success" href=""><i class="fa-regular fa-circle-user fs-3 mt-1 ps-4"></i></a>
+                    <a class="text-decoration-none text-success" href="user_prof.php"><i class="fa-regular fa-circle-user fs-3 mt-1 ps-4"></i></a>
                 </div>
             </div>
         </div>

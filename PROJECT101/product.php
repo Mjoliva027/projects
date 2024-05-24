@@ -22,6 +22,14 @@ $_SESSION;
 
     <script src="https://kit.fontawesome.com/c8fb92272e.js" crossorigin="anonymous"></script>
     <title>Shoe Haven</title>
+
+    <style>
+       
+        .swiper-slide video {
+            max-width: 90%;
+            max-height: 80%;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,10 +38,18 @@ $_SESSION;
     <!-- Swiper -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="https://cdn.thewirecutter.com/wp-content/media/2021/10/running-shoes-2048px-3128-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="https://staticg.sportskeeda.com/editor/2022/04/cb16b-16512353836768-1920.jpg" alt="..."></div>
-            <div class="swiper-slide"><img src="https://media.gq.com/photos/63eba1b2275d2fef78a425c2/master/pass/nike-running-shoes-streakfly-invincible.jpg" alt=""></div>
-            <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">
+                <video src="./video/videoplayback.mp4" autoplay loop muted></video>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://staticg.sportskeeda.com/editor/2022/04/cb16b-16512353836768-1920.jpg" alt="...">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://media.gq.com/photos/63eba1b2275d2fef78a425c2/master/pass/nike-running-shoes-streakfly-invincible.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://cdn.thewirecutter.com/wp-content/media/2021/10/running-shoes-2048px-3128-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024.jpg" alt="">
+            </div>
             <div class="swiper-slide">Slide 5</div>
             <div class="swiper-slide">Slide 6</div>
             <div class="swiper-slide">Slide 7</div>
@@ -93,10 +109,7 @@ $_SESSION;
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
             centeredSlides: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
+           
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,

@@ -31,7 +31,7 @@
                         <button class="btn btn-outline-primary " type="submit">Search</button>
                     </form>
                    
-                    <a class="text-decoration-none text-success" href=""><i class="fa-regular fa-circle-user fs-3 mt-1 ps-4"></i></a>
+                    <a class="text-decoration-none text-success" href="user_prof.php"><i class="fa-regular fa-circle-user fs-3 mt-1 ps-4"></i></a>
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 } elseif ($user_data['user_type'] === 'a') {
                     // Admin user, redirect to admin page
                     $_SESSION['user_id'] = $user_data['user_id'];
-                    header("location: admin-main/admin/adminpage.php");
+                    header("location: adminpage.php");
                     die;
                 }
             } else {
@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 $_SESSION;
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,26 +53,61 @@ $_SESSION;
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <title>Shoe Haven</title>
+    <style>
+       #login {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.box-area {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(1px); /* Blur effect for glass look */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+
+    </style>
 </head>
 
 <body id="login">
+    <video autoplay muted loop class="video-bg">
+        <source src="./video/videoplayback.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="images/shoe-haven-high-resolution-logo-transparent.png " width="50" height="50" Shoe Haven> Shoe Haven</a>
+                <img src="./images/shoe-haven-high-resolution-logo-transparent.png" width="50" height="50"> Shoe Haven
+            </a>
         </div>
     </nav>
+
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounded-5 p-3 shadow box-area">
 
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
-
-            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box ">
+            <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="featured-image mb-2">
-                    <img src="images/shoe-haven-high-resolution-logo.png" class="img-fluid" style="width: 450px;">
+                    <img src="./images/shoe-haven-high-resolution-logo-transparent.png" class="img-fluid" style="width: 450px;">
                 </div>
-
             </div>
-            <div class="right-box col-md-6 ">
+
+            <div class="col-md-6 right-box">
                 <div class="row align-items-center">
                     <div class="header-text mb-3">
                         <p style="color: black;">Log In</p>
@@ -96,15 +130,14 @@ $_SESSION;
                             </div>
                         <?php endif; ?>
                         <div class="input-group mb-3">
-                            <button class="btn bnt-lg btn-primary w-100 fs-6">Login</button>
+                            <button class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                         </div>
 
                         <div class="row text-center">
-                            <Small style="color: black;">Don't have an account? <a href="signup.php">Sign up</a></Small>
+                            <small style="color: black;">Don't have an account? <a href="signup.php">Sign up</a></small>
                         </div>
                     </form>
                 </div>
-
             </div>
 
         </div>
