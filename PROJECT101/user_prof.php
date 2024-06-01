@@ -3,6 +3,13 @@ session_start();
 include("connection.php");
 include("function.php");
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if not logged in
+    header("Location: login.php");
+    exit;
+}
+
 $user_id = $_SESSION['user_id'];
 $_SESSION;
 
@@ -73,6 +80,7 @@ if ($select_user && mysqli_num_rows($select_user) > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -185,7 +193,10 @@ if ($select_user && mysqli_num_rows($select_user) > 0) {
                 </section>
             </div>
         </div>
+        
     </main>
+    <div> <?php require_once('include/footer.php'); ?></div>
+   
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fAIlT894z9Opbl3NsR5U2vt8LP6SX9mzxNfuqsGOaptbwHjbWEjHWCH+wxNsoCSt" crossorigin="anonymous"></script>
 

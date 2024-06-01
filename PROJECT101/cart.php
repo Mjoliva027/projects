@@ -3,6 +3,13 @@ session_start();
 include("connection.php");
 include("function.php");
 
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if not logged in
+    header('Location: login.php');
+    exit();
+}
+
 $user_id = $_SESSION['user_id'];
 $_SESSION;
 
@@ -156,6 +163,7 @@ if (isset($_GET['delete_all'])) {
         </section>
 
     </div>
+    <?php require_once('include/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>

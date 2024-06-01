@@ -57,6 +57,7 @@ $result_items = mysqli_query($con, $query_items);
                     </nav>
                 </div>
             </div>
+
         </div>
     </nav>
 

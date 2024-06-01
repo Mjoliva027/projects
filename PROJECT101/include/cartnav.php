@@ -14,20 +14,9 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
 
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" aria-current="page" href="product.php">Home</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="#contact">Contact Us</a>
-                        </li>
-                    </ul>
+                <div class="offcanvas-body" style="margin-left: 15%;">
                     <form class="d-flex " style="padding-right: 10%;" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Find your pairs" aria-label="Search">
+                        <input class="form-control me-2"  style="width: 500px;" type="search" placeholder="Find your pairs" aria-label="Search">
                         <button class="btn btn-outline-primary " type="submit">Search</button>
                     </form>
                    

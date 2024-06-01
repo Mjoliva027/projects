@@ -18,11 +18,11 @@ if (isset($_GET['product_id'])) {
 }
 
 if (isset($_POST['add_to_cart'])) {
-    $prod_name = $_POST['prod_name'];
-    $prod_price = $_POST['prod_price'];
-    $size_name = $_POST['size_name'];
-    $color_name = $_POST['color_name'];
-    $quantity = $_POST['Quantity'];
+    $prod_name = mysqli_real_escape_string ($con,$_POST['prod_name']);
+    $prod_price = mysqli_real_escape_string($con, $_POST['prod_price']);
+    $size_name = mysqli_real_escape_string ($con, $_POST['size_name']);
+    $color_name = mysqli_real_escape_string($con,$_POST['color_name']);
+    $quantity = mysqli_real_escape_string($con, $_POST['Quantity']);
     // Retrieve user_id from session
     $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
@@ -158,6 +158,10 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
             opacity: 0.8;
         }
 
+        .swiper-button-next, .swiper-button-prev {
+            color: blue;
+        }
+
         .mySwiper .swiper-slide-thumb-active {
             opacity: 5;
         }
@@ -187,7 +191,7 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
 
         .color-option img {
             width: 70px;
-            height: 70px;
+            height: 80px;
             border-radius: 10%;
             cursor: pointer;
         }
@@ -254,9 +258,9 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                 </div>
             </div>
 
-            <div class="mt-5" style="width: 206%; height: 10px; background-color:#Bcbfbf;"></div>
+            <div class="mt-5" style="width: 206%; height: 10px; background-color:#Bcbfbf;   "></div>
 
-            <div class="mt-5">
+            <div class="mt-5 pt-5">
                 <h4 class="ms-5">Product Description</h4>
             </div>
             <p class="ms-5"><?php echo $prod_description; ?></p>
@@ -279,7 +283,7 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                 }
                 ?>
 
-                <div class="pt-5">
+                <div class="pt-3">
                     <h6 class="text-secondary">Color</h6>
                     <?php
                     $query = "SELECT color_name, stock FROM color WHERE product_id = $product_id";
@@ -298,11 +302,11 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                     ?>
                 </div>
 
-                <div class="mt-5">
+                <div class="mt-3">
                     <h6 class="text-secondary">Size</h6>
 
                     <!-- Display size options here -->
-                    <div class="size-option d-inline-flex flex-wrap justify-content-start align-items-start" style="gap: 0; margin-left:1%;">
+                    <div class="size-option d-inline-flex flex-wrap justify-content-start align-items-start" style="gap: 0; margin-left:3%;">
                         <?php
 
                         // Query to fetch size names from the database based on product_id
@@ -315,8 +319,8 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $size_name = $row['size_name'];
                         ?>
-                                <div class="size-option mb-2" style="flex-basis: 30%; max-width: 20%; margin-left:0%;">
-                                    <button type="button" class="btn btn-outline-secondary size-button" data-size="<?php echo htmlspecialchars($size_name); ?>"><?php echo htmlspecialchars($size_name); ?></button>
+                                <div class="size-option mb-2" style="flex-basis: 20%; max-width: 20%; margin-left:-2%;">
+                                    <button type="button" class="btn btn-outline-secondary size-button " data-size="<?php echo htmlspecialchars($size_name); ?>"><?php echo htmlspecialchars($size_name); ?></button>
                                 </div>
 
                         <?php
@@ -353,6 +357,9 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
         </div>
     </div>
 
+
+    <?php require_once('include/footer.php'); ?>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
     <script>
@@ -364,6 +371,7 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
         });
         var swiper2 = new Swiper(".mySwiper2", {
             spaceBetween: 10,
+            loop: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -377,7 +385,10 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
             const colorImages = document.querySelectorAll('.color-image');
             const sizeButtons = document.querySelectorAll('.size-button');
             const addToCartButton = document.getElementById('add-to-cart-button');
-            const  buyNowButton = document.getElementById('buy-now');
+            const buyNowButton = document.getElementById('buy-now');
+            const quantityInput = document.querySelector('.quantity-input');
+            const decreaseButton = document.getElementById('decrease');
+            const increaseButton = document.getElementById('increase');
 
             function selectColor(selectedImage) {
                 colorImages.forEach(image => {
@@ -393,21 +404,12 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                 const stock = parseInt(stockText.replace('Stock: ', ''), 10);
 
                 if (stock > 0) {
-                addToCartButton.disabled = false;
-                buyNowButton.disabled = false;
-            } else {
-                addToCartButton.disabled = true;
-                buyNowButton.disabled = true;
-            }
-        }
-
-            function selectSize(selectedButton) {
-                sizeButtons.forEach(button => {
-                    button.style.border = '';
-                });
-                selectedButton.style.border = '2px solid blue';
-                const sizeValue = selectedButton.getAttribute('data-size');
-                document.querySelector('#selected-size').value = sizeValue;
+                    addToCartButton.disabled = false;
+                    buyNowButton.disabled = false;
+                } else {
+                    addToCartButton.disabled = true;
+                    buyNowButton.disabled = true;
+                }
             }
 
             function selectSize(selectedButton) {
@@ -430,7 +432,20 @@ if ($result_description && $row = mysqli_fetch_assoc($result_description)) {
                     selectSize(this);
                 });
             });
+
+            decreaseButton.addEventListener('click', function() {
+                let quantity = parseInt(quantityInput.value, 10);
+                if (quantity > 1) {
+                    quantityInput.value = quantity - 1;
+                }
+            });
+
+            increaseButton.addEventListener('click', function() {
+                let quantity = parseInt(quantityInput.value, 10);
+                quantityInput.value = quantity + 1;
+            });
         });
     </script>
 </body>
 </html>
+

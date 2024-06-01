@@ -15,7 +15,7 @@ $sql = "SELECT * FROM products WHERE prod_name LIKE '%$query%' OR prod_des LIKE 
 $result = $con->query($sql);
 
 // Fetching suggested products
-$suggested_sql = "SELECT * FROM products ORDER BY RAND() LIMIT 4"; // Change the limit as needed
+$suggested_sql = "SELECT * FROM products ORDER BY RAND() LIMIT 5"; // Change the limit as needed
 $suggested_result = $con->query($suggested_sql);
 ?>
 
@@ -39,9 +39,7 @@ $suggested_result = $con->query($suggested_sql);
         .card-body p {
             margin-bottom: 0; /* Remove bottom margin of paragraph */
         }
-        .row-cols-md-4 > .col {
-            flex: 0 0 10%;
-        }
+        
     </style>
 </head>
 <body>
@@ -62,11 +60,11 @@ $suggested_result = $con->query($suggested_sql);
                 <div class="col">
                     <a href="view_products.php?product_id=<?= $row['product_id'] ?>" class="text-decoration-none text-black">
                         <div class="card mh-100 mb-4 shadow-sm">
-                            <div style="max-height: 300px; overflow: hidden;">
+                            <div style="max-height: 200px; overflow: hidden;">
                                 <img src="./images/<?php echo $prod_image; ?>" class="card-img-top img-fluid" alt="<?php echo $prod_name; ?>">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($row['prod_name']) ?></h5>
+                                <h5 class="card-title" style="font-size: 15px;"><?= htmlspecialchars($row['prod_name']) ?></h5>
                                 <p class="text-muted">₱<?= htmlspecialchars($row['prod_price']) ?></p>
                             </div>
                         </div>
@@ -79,26 +77,39 @@ $suggested_result = $con->query($suggested_sql);
     <?php endif; ?>
     
     <!-- Suggested Products Section -->
-    <h2 class="mt-5">Suggested Products</h2>
-    <div class="row row-cols-2 row-cols-md-4 g-4 ps-4">
+    <h2 class="mt-5 mb-5">Suggested Products</h2>
+   
+    <div class="row row-cols-2 row-cols-md-5 g-6 ps-4">
         <?php while ($row = $suggested_result->fetch_assoc()): ?>
-            <div class="col">
-                <div class="card mb-4 shadow-sm">
-                    <div style="max-height: 300px; overflow: hidden;">
-                        <img src="./images/<?php echo $row['prod_image']; ?>" class="card-img-top img-fluid" alt="<?php echo $row['prod_name']; ?>">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($row['prod_name']) ?></h5>
-                        <p class="text-muted">₱<?= htmlspecialchars($row['prod_price']) ?></p>
-                    </div>
+            <?php
+                $product_id = $row['product_id'];
+                $prod_name = $row['prod_name'];
+                $prod_price = $row['prod_price'];
+                $prod_image = $row['prod_image'];
+                ?>
+                <div class="col">
+                    <a href="view_products.php?product_id=<?= $row['product_id'] ?>" class="text-decoration-none text-black">
+                        <div class="card mh-100 mb-4 shadow-sm">
+                            <div style="max-height: 200px; overflow: hidden;">
+                                <img src="./images/<?php echo $prod_image; ?>" class="card-img-top img-fluid" alt="<?php echo $prod_name; ?>">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"style="font-size: 15px;"><?= htmlspecialchars($row['prod_name']) ?></h5>
+                                <p class="text-muted">₱<?= htmlspecialchars($row['prod_price']) ?></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
         <?php endwhile; ?>
     </div>
+
+    
+   
     <!-- End of Suggested Products Section -->
     
     <?php $con->close(); ?>
 </div>
+<?php require_once('include/footer.php'); ?>
 <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>

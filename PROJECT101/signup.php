@@ -38,9 +38,37 @@ $_SESSION;
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <title>Shoe haven</title>
+
+    <style>
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%); /* Centers the video */
+            z-index: -1;
+        }
+
+        .box-area {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px); /* Blur effect for glass look */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+    </style>
 </head>
 
 <body id="signup">
+        <video autoplay muted loop class="video-bg">
+                <source src="./video/videoplayback.mp4" type="video/mp4">
+            </video>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -50,7 +78,7 @@ $_SESSION;
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        <div class="row border rounded-5 p-3 shadow box-area">
 
 
             <div class="container">
@@ -58,7 +86,7 @@ $_SESSION;
                     <div class="header-text mb-1">
                         <p style="color: black;">Sign Up</p>
                     </div>
-                    <form method="post">
+                    <form method="post" onsubmit="return validatePassword()">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6">
@@ -111,8 +139,7 @@ $_SESSION;
                 </div>
 
                 <div class="input-group mb-3 mt-3 align-items-center justify-content-center">
-                    <button class="btn btn-md btn-primary w-50 fs-6" onclick="validatePassword()">Sign up</button>
-
+                    <button type="submit" class="btn btn-md btn-primary w-50 fs-6">Sign up</button>
                 </div>
 
                 <div class="row text-center">
@@ -130,8 +157,8 @@ $_SESSION;
 
 
     </div>
-    </div>
-
+    <div style="margin-top:-10%;"><?php require_once('include/footer.php'); ?></div>
+    
 
     <script>
         function validatePassword() {
@@ -148,11 +175,10 @@ $_SESSION;
             if (password !== confirmPassword) {
                 errorElement.textContent = "Passwords do not match!";
                 errorElement.style.color = "red";
+                return false;
             } else {
-                errorElement.textContent = "Sign up Successfully";
-                errorElement.style.color = "blue";
-                // Redirect to the login page
-                window.location.href = "login.php";
+                errorElement.textContent = "";
+                return true;
             }
         }
     </script>

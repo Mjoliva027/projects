@@ -3,10 +3,11 @@ session_start();
 include("connection.php");
 include("function.php");
 
+// Check if the user is logged in
+$user_logged_in = isset($_SESSION['user_id']);
 
-
-$_SESSION;
-
+$suggested_sql = "SELECT * FROM products ORDER BY RAND() "; // Change the limit as needed
+$suggested_result = $con->query($suggested_sql);
 ?>
 
 <!DOCTYPE html>
@@ -17,15 +18,38 @@ $_SESSION;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoe Haven</title>
   <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.css">
-
   <link rel="stylesheet" href="style.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    .card {
+      width: 200px;
+      margin-bottom: 10px; /* Adjust margin */
+    }
+    .card-body {
+      padding: 5px; /* Adjust padding */
+    }
+    .card-body p {
+      margin-bottom: 0; /* Remove bottom margin of paragraph */
+    }
+    .swiper-slide video {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .row {
+      margin-left: 0; /* Remove left margin */
+      margin-right: 0; /* Remove right margin */
+    }
+    .col {
+      padding-left: 5px; /* Adjust padding between columns */
+      padding-right: 5px; /* Adjust padding between columns */
+    }
+  </style>
 </head>
 
 <body id="index">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="images/shoe-haven-high-resolution-logo-transparent.png" width="50" height="50" alt="Shoe Haven Logo">
@@ -42,18 +66,7 @@ $_SESSION;
         </div>
 
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
-            <li class="nav-item mx-2">
-              <a class="nav-link" aria-current="page" href="#home">Home</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="#contact">Contact Us</a>
-            </li>
-          </ul>
-          <div class="buttons mt-2 pe-2">
+          <div class="buttons mt-2 pe-2" style="margin-left:85%;">
             <a href="login.php"><button type="button" class="btn btn-outline-primary">Login</button></a>
           </div>
           <div class="buttons mt-2">
@@ -64,112 +77,65 @@ $_SESSION;
     </div>
   </nav>
 
-
-  <body>
-    <!-- Swiper -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="https://cdn.thewirecutter.com/wp-content/media/2021/10/running-shoes-2048px-3128-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024.jpg" alt=""></div>
-        <div class="swiper-slide"><img src="https://staticg.sportskeeda.com/editor/2022/04/cb16b-16512353836768-1920.jpg" alt="..."></div>
-        <div class="swiper-slide"><img src="https://media.gq.com/photos/63eba1b2275d2fef78a425c2/master/pass/nike-running-shoes-streakfly-invincible.jpg" alt=""></div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><video src="./video/Nike ads Motion Graphics.mp4" autoplay loop muted></video></div>
+      <div class="swiper-slide"><img src="https://staticg.sportskeeda.com/editor/2022/04/cb16b-16512353836768-1920.jpg" alt="..."></div>
+      <div class="swiper-slide"><img src="https://media.gq.com/photos/63eba1b2275d2fef78a425c2/master/pass/nike-running-shoes-streakfly-invincible.jpg" alt=""></div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
 
-    <h4 class="fw-semibold ps-5">Latest Drop</h4>
-    <div class="row row-cols-2   row-cols-md-6 g-4 ps-4">
+  <h2 class="mt-5 ps-5 mb-5">Suggested Products</h2>
+   
+  <div class="row row-cols-2 row-cols-md-6 g-4 ps-4">
+    <?php while ($row = $suggested_result->fetch_assoc()): ?>
+      <?php
+      $product_id = $row['product_id'];
+      $prod_name = $row['prod_name'];
+      $prod_price = $row['prod_price'];
+      $prod_image = $row['prod_image'];
+      ?>
       <div class="col">
-        <div class="card mh-100">
-          <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png" class="card-img-top mh-100" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Nike Dunk High</h6>
-            <p class="card-text fw-semibold">₱8,595.00 PHP</p>
+        <a href="<?= $user_logged_in ? "view_products.php?product_id=" . $row['product_id'] : "#" ?>" class="text-decoration-none text-black" onclick="<?= $user_logged_in ? "" : "alert('Please log in to view product details.')" ?>">
+          <div class="card mh-100 mb-4 shadow-sm">
+            <div style="max-height: 200px; overflow: hidden;">
+              <img src="./images/<?php echo $prod_image; ?>" class="card-img-top img-fluid" alt="<?php echo $prod_name; ?>">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 15px;"><?= htmlspecialchars($row['prod_name']) ?></h5>
+              <p class="text-muted">₱<?= htmlspecialchars($row['prod_price']) ?></p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
+    <?php endwhile; ?>
+  </div>
+  <?php require_once('include/footer.php'); ?>
 
-      <div class="col">
-        <div class="card mh-100">
-          <img src="https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_411,c_limit/4f37fca8-6bce-43e7-ad07-f57ae3c13142/air-force-1-07-shoes-WrLlWX.png" class="card-img-top mh-100" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Nike Air Force 1</h6>
-            <p class="card-text fw-semibold">₱5,495.00 PHP</p>
-          </div>
-        </div>
-      </div>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
 
-      <div class="col">
-        <div class="card mh-100">
-          <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/f2d9229b65c248488c78af3b00851dab_9366/Runfalcon_3.0_Shoes_White_HP7557_01_standard.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Addidas Runfalcon3.0</h6>
-            <p class="card-text fw-semibold">₱3,500.00 PHP</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card mh-100">
-          <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/71a00703e8c14c76aa8471445a9eaf40_9366/Ultrabounce_Shoes_Blue_HP5783_HM1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Ultrabounce</h6>
-            <p class="card-text fw-semibold">₱4,500.00 PHP</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card mh-100">
-          <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/f2d9229b65c248488c78af3b00851dab_9366/Runfalcon_3.0_Shoes_White_HP7557_01_standard.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Addidas Runfalcon3.0</h6>
-            <p class="card-text fw-semibold">₱3,500.00 PHP</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card mh-100">
-          <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/71a00703e8c14c76aa8471445a9eaf40_9366/Ultrabounce_Shoes_Blue_HP5783_HM1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Ultrabounce</h6>
-            <p class="card-text fw-semibold">₱4,500.00 PHP</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
-
-    <!-- Initialize Swiper -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    </script>
-  </body>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+</body>
 
 </html>

@@ -6,14 +6,23 @@ include("function.php");
 $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['place_order'])) {
-    $fullname = $_POST['fullname'];
-    $address = $_POST['address'];
-    $zip_code = $_POST['zip_code'];
-    $number = $_POST['number'];
-    $payment = $_POST['payment'];
-    $gcash_reference = isset($_POST['gcash_reference']) ? $_POST['gcash_reference'] : null;
+    $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
+    $zip_code = mysqli_real_escape_string($con, $_POST['zip_code']);
+    $phone_num = mysqli_real_escape_string($con, $_POST['phone_num']);
+    $payment = mysqli_real_escape_string($con, $_POST['payment']);
+    $gcash_reference = isset($_POST['gcash_reference']) ? mysqli_real_escape_string($con, $_POST['gcash_reference']) : null;
 
-    $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id = '" . $user_id . "'");
+    // Debugging: Print form data
+    echo "Form Data:<br>";
+    echo "Fullname: $fullname<br>";
+    echo "Address: $address<br>";
+    echo "Zip Code: $zip_code<br>";
+    echo "Phone Number: $phone_num<br>";
+    echo "Payment Method: $payment<br>";
+    echo "GCash Reference: $gcash_reference<br>";
+
+    $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
     $quantity = 0;
     $price_total = 0;
     $product_names = [];
@@ -23,11 +32,10 @@ if (isset($_POST['place_order'])) {
         while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
             $product_price = $fetch_cart['price'] * $fetch_cart['quantity'];
             $price_total += $product_price;
-            $product_names[] = $fetch_cart['name'];
-            $product_size[] = $fetch_cart['size'];
+            $product_names[] = mysqli_real_escape_string($con, $fetch_cart['name']);
+            $product_size[] = mysqli_real_escape_string($con, $fetch_cart['size']);
             $quantity += $fetch_cart['quantity'];
-
-            $color_id = $fetch_cart['color_id'];
+            $color_id = mysqli_real_escape_string($con, $fetch_cart['color_id']);
             $product_quantity = $fetch_cart['quantity'];
 
             $update_stock = mysqli_query($con, "UPDATE `color` SET stock = stock - $product_quantity WHERE color_id = '$color_id'");
@@ -47,10 +55,13 @@ if (isset($_POST['place_order'])) {
         header("Location: place_order.php");
         exit;
     } else {
-        $detail_query = mysqli_query($con, "INSERT INTO `orders`(`order_id`, `fullname`, `address`, `zip_code`, `number`, `payment`, `prod_name`, `size`, `quantity`, `price_total`, `user_id`, `gcash_reference`) 
-        VALUES('$order_id', '$fullname', '$address', '$zip_code', '$number', '$payment', '$prod_name','$size', '$quantity', '$price_total', '$user_id', '$gcash_reference')") or die('query failed');
+        $detail_query = mysqli_query($con, "INSERT INTO `orders`(`order_id`, `fullname`, `address`, `zip_code`, `phone_num`, `payment`, `prod_name`, `size`, `quantity`, `price_total`, `user_id`, `gcash_reference`) 
+        VALUES('$order_id', '$fullname', '$address', '$zip_code', '$phone_num', '$payment', '$prod_name', '$size', '$quantity', '$price_total', '$user_id', '$gcash_reference')") or die('query failed: ' . mysqli_error($con));
 
         if ($detail_query) {
+            // Debugging: Verify data inserted
+            echo "Order placed successfully. Order ID: $order_id<br>";
+
             // Delete items from cart
             $delete_cart = mysqli_query($con, "DELETE FROM `cart` WHERE user_id = '$user_id'");
 
@@ -70,7 +81,7 @@ if (isset($_POST['place_order'])) {
                     </div>
                     <div class='customer-details'>
                         <p>Your name: <span>$fullname</span></p>
-                        <p>Your number: <span>$number</span></p>
+                        <p>Your number: <span>$phone_num</span></p>
                         <p>Your address: <span>$address - $zip_code</span></p>
                         <p>Your payment mode: <span>$payment</span></p>
                         <p>(*pay when product arrives*)</p>
@@ -87,7 +98,6 @@ if (isset($_POST['place_order'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,7 +106,6 @@ if (isset($_POST['place_order'])) {
     <script src="https://kit.fontawesome.com/c8fb92272e.js" crossorigin="anonymous"></script>
     <title>Shoe Haven</title>
 </head>
-
 <body>
     <div class="container">
         <header class="header" style="margin-bottom: 8%;"></header>
@@ -179,21 +188,24 @@ if (isset($_POST['place_order'])) {
                             </div>
 
                             <div class="form-floating col-md-6">
-                                <input type="tel" class="form-control" id="phone" name="number" placeholder="123-456-7890" required>
-                                <label for="phone" class="form-label ms-2">Phone Number</label>
+                                <input type="number" class="form-control" id="phone_num" name="phone_num" placeholder="123-456-7890" required>
+                                <label for="phone_num" class="form-label ms-2">Phone Number</label>
                             </div>
                             <div class="col-12">
                                 <label for="paymentDetails" class="form-label">Payment Details</label>
                                 <select id="paymentDetails" class="form-select" name="payment" required onchange="toggleGcashReference(this.value)">
                                     <option value="">Select Payment Method</option>
                                     <option value="cod">Cash on Delivery</option>
-                                    <option value="gcash">GCash</option>
+                                    <option value="gcash">GCash </option>
                                 </select>
                             </div>
 
                             <div class="form-floating col-md-12 mt-3" id="gcashReferenceDiv" style="display: none;">
+                            
                                 <input type="text" class="form-control" id="gcashReference" name="gcash_reference" placeholder="GCash Reference Number">
+                                <img src="./images/QRgcash.jpg" alt="" width="150" height="150">
                                 <label for="gcashReference" class="ms-2">GCash Reference Number</label>
+                                
                             </div>
 
                             <div class="col-12">
@@ -205,6 +217,7 @@ if (isset($_POST['place_order'])) {
             </div>
         </main>
     </div>
+    <?php require_once('include/footer.php'); ?>
 
     <script>
         function toggleGcashReference(paymentMethod) {
@@ -221,5 +234,4 @@ if (isset($_POST['place_order'])) {
     </script>
 
 </body>
-
 </html>

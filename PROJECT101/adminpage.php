@@ -16,8 +16,8 @@ if (!isset($_SESSION['user_id'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   <link rel="stylesheet" href="./adminCSS.css">
-   <link rel="stylesheet" href="./adminlte.min.css">
+   
+   
    <title>Admin Page</title>
 
    <style>
@@ -76,8 +76,9 @@ html {
 
    </style>
  </head>
-   <?php require_once('include/nava.php'); ?>
+  
 <body>
+   <?php require_once('include/nava.php'); ?>
 <div class="container">
         <div class="row">
           <div class="col-md-3">
@@ -124,21 +125,16 @@ html {
         <div class="small-box bg-light shadow-sm border">
             <div class="inner">
             <?php
-@include 'connection.php';
-include "function.php";
 
 // Query to select total sales from orders where payment_status is '1'
-$result = $con->query("SELECT SUM(price_total) AS total_sales FROM `orders` WHERE `status` = 'accepted'");
-
+$result = $con->query("SELECT SUM(price_total) AS total_sales FROM `orders` WHERE `status` = 'delivered'");
+$totalPaidSales = 0;
 // Check if the query executed successfully
 if ($result) {
     // Fetch the total sales value
     $row = $result->fetch_assoc();
     $totalPaidSales = $row["total_sales"];
-} else {
-    // If the query fails, set total sales to 0
-    $totalPaidSales = 0;
-}
+} 
 ?>
 
                 <h3>₱<?= number_format($totalPaidSales, 2) ?></h3>

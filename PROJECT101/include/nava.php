@@ -43,7 +43,7 @@
     text-decoration: none;
     color: #fff;
     padding: 10px;
-    font-size: 18px;
+    font-size: 15px;
     transition: color 0.3s ease;
 }
 
@@ -65,6 +65,7 @@
 </div>
     <ul class="nav-links">
         <li><a href="adminpage.php">Home</a></li>
+        <li><a href="order_received.php">Inbox</a></li>
         <li><a href="addproducts.php">Products</a></li>
         <li><a href="viewCustomer.php">Customers</a></li>
         <li><a href="viewAllOrders.php">Orders</a></li>

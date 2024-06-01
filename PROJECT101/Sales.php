@@ -19,9 +19,25 @@ if(isset($_POST['accept_order'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Once Admin Page</title>
-
+    <link rel="stylesheet" href="css/adminCSS.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <link rel="stylesheet" href="css/adminCSS.css">
+  
+
+   <style>
+       /* Make the table more compact */
+       table.table {
+           width: 100%;
+           border-collapse: collapse;
+       }
+       table.table th, table.table td {
+           padding: 5px;
+           font-size: 12px;
+           text-align: center;
+       }
+       table.table td {
+           border: 1px solid #ddd;
+       }
+   </style>
 </head>
 <body>
 
@@ -46,7 +62,7 @@ if(isset($_POST['accept_order'])){
         </thead>
         <tbody>
             <?php
-            $sqlOrders = "SELECT * FROM `orders` WHERE status = 'accepted'"; // Select only accepted orders
+            $sqlOrders = "SELECT * FROM `orders` WHERE status = 'delivered'"; // Select only accepted orders
             $resultOrders = $con->query($sqlOrders);
 
             $totalPaidSales = 0;
@@ -60,11 +76,11 @@ if(isset($_POST['accept_order'])){
                         <td><?= $row["fullname"] ?></td>
                         <td><?= $row["address"] ?></td>
                         <td><?= $row["zip_code"] ?></td>
-                        <td>₱<?= $row["number"] ?></td>
+                        <td><?= $row["phone_num"] ?></td>
                         <td><?= $row["payment"] ?></td>
                         <td><?= $row["quantity"] ?></td>
-                        <td><?= $row["price_total"] ?></td>
-                        <td>Accepted</td> <!-- Display order status -->
+                        <td>₱<?= $row["price_total"] ?></td>
+                        <td><?= $row["status"] ?></td>
                     </tr>
                     <?php
                     // Accumulate price_total to calculate total sales
