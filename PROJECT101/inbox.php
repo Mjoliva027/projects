@@ -1,10 +1,15 @@
 <?php
 session_start();
-@include 'connection.php';
+include 'connection.php';
 include "function.php";
 
-// Assuming the user is logged in and we have their user ID
-$user_id = $_SESSION['user_id']; // Adjust this line based on your login system
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login if not logged in
+    exit();
+}
+
+$user_id = $_SESSION['user_id']; 
 
 // Check if a delete request has been made
 if (isset($_POST['delete_message'])) {
@@ -15,6 +20,7 @@ if (isset($_POST['delete_message'])) {
 
 $sqlInbox = "SELECT * FROM `inbox` WHERE user_id = '$user_id' ORDER BY date_sent DESC";
 $resultInbox = $con->query($sqlInbox);
+
 ?>
 
 <!DOCTYPE html>
