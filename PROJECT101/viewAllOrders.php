@@ -84,12 +84,16 @@ if(isset($_POST['order_action'])){
             <tr>
                 <th>ID</th>
                 <th>Order ID</th>
+                <th>Product</th>
                 <th>Fullname</th>
                 <th>Address</th>
                 <th>Zip code</th>
                 <th>Phone No.</th>
                 <th>Payment Method</th>
                 <th>Gcash reference</th>
+                <th>acc name</th>
+                <th>acc number</th>
+                <th>amount</th>
                 <th>Total Product</th>
                 <th>Price Total</th>
                 <th>Action</th>
@@ -125,12 +129,16 @@ if(isset($_POST['order_action'])){
                     <tr>
                         <td><?= $row["o_id"] ?></td>
                         <td><?= $row["order_id"] ?></td>
+                        <td><?= $row["prod_name"] ?></td>
                         <td><?= $row["fullname"] ?></td>
                         <td><?= $row["address"] ?></td>
                         <td><?= $row["zip_code"] ?></td>
                         <td><?= $row["phone_num"] ?></td>
                         <td><?= $row["payment"] ?></td>
                         <td><?= $row["gcash_reference"] ?></td>
+                        <td><?= $row["acc_name"] ?></td>
+                        <td><?= $row["acc_number"] ?></td>
+                        <td><?= $row["amount_paid"] ?></td>
                         <td><?= $row["quantity"] ?></td>
                         <td>₱<?= $row["price_total"] ?></td>
                         <td>

@@ -4,10 +4,12 @@ include("connection.php");
 include("function.php");
 
 // Check if user is logged in and retrieve user_id from session
-if (!isset($_SESSION['user_id'])) {
+$is_logged_in = isset($_SESSION['user_id']);
+if (!$is_logged_in) {
     echo "User is not logged in. Please log in to add items to the cart.";
-    exit();
 }
+
+$user_id = $_SESSION['user_id'] ?? null;
 
 // Ensure product_id is set before using it
 if (isset($_GET['product_id'])) {
@@ -18,13 +20,12 @@ if (isset($_GET['product_id'])) {
 }
 
 if (isset($_POST['add_to_cart'])) {
-    $prod_name = mysqli_real_escape_string ($con,$_POST['prod_name']);
+    $prod_name = mysqli_real_escape_string($con, $_POST['prod_name']);
     $prod_price = mysqli_real_escape_string($con, $_POST['prod_price']);
-    $size_name = mysqli_real_escape_string ($con, $_POST['size_name']);
-    $color_name = mysqli_real_escape_string($con,$_POST['color_name']);
+    $size_name = mysqli_real_escape_string($con, $_POST['size_name']);
+    $color_name = mysqli_real_escape_string($con, $_POST['color_name']);
     $quantity = mysqli_real_escape_string($con, $_POST['Quantity']);
-    // Retrieve user_id from session
-    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    $user_id = $_SESSION['user_id'] ?? null;
 
     // Get color_id based on color_name and product_id
     $color_query = "SELECT color_id FROM color WHERE color_name = '$color_name' AND product_id = $product_id";
@@ -38,7 +39,7 @@ if (isset($_POST['add_to_cart'])) {
         $product_result = mysqli_query($con, $product_query);
         if (mysqli_num_rows($product_result) > 0) {
             // Product exists, proceed with insertion into the cart
-            $insert_product = mysqli_query($con, "INSERT INTO `cart` (user_id, product_id,color_id, name, price, image, size, quantity) VALUES ('$user_id', '$product_id','$color_id', '$prod_name', '$prod_price', '$color_name', '$size_name', '$quantity')");
+            $insert_product = mysqli_query($con, "INSERT INTO `cart` (user_id, product_id, color_id, name, price, image, size, quantity) VALUES ('$user_id', '$product_id', '$color_id', '$prod_name', '$prod_price', '$color_name', '$size_name', '$quantity')");
             if ($insert_product) {
                 echo '<div class="alert alert-success alert-dismissible fade show position-fixed top-50 start-50 translate-middle" role="alert" style="z-index: 9999;">
                     <h4 class="text-center"> Successfully Added to Cart </h4>
