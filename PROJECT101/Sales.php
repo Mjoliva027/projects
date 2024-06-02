@@ -62,7 +62,7 @@ if(isset($_POST['accept_order'])){
         </thead>
         <tbody>
             <?php
-            $sqlOrders = "SELECT * FROM `orders` WHERE status = 'delivered'"; // Select only accepted orders
+            $sqlOrders = "SELECT * FROM `orders` WHERE status = 'received'"; // Select only accepted orders
             $resultOrders = $con->query($sqlOrders);
 
             $totalPaidSales = 0;
