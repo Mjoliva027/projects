@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2024 at 06:36 PM
+-- Generation Time: Jun 02, 2024 at 11:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,13 +39,6 @@ CREATE TABLE `cart` (
   `color_id` int(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `name`, `price`, `image`, `size`, `quantity`, `user_id`, `product_id`, `color_id`) VALUES
-(166, 'Nike Downshifter 12', 2500.00, 'nike downshifter black white.jpg', '42', 1, 3, 56, 173);
-
 -- --------------------------------------------------------
 
 --
@@ -74,27 +67,28 @@ INSERT INTO `color` (`color_id`, `color_name`, `stock`, `product_id`) VALUES
 (170, 'Nike air vapormax orange.jpg', 10, 55),
 (171, 'Nike air vapormax white.png', 10, 55),
 (172, 'nike downshifter - avatar.png', 10, 56),
-(173, 'nike downshifter black white.jpg', 10, 56),
+(173, 'nike downshifter black white.jpg', 8, 56),
 (174, 'nike downshifter black.png', 10, 56),
 (175, 'nike downshifter blue.png', 10, 56),
 (176, 'nike downshifter white.png', 10, 56),
-(177, 'nike down low gray.png', 10, 57),
+(177, 'nike down low gray.png', 8, 57),
 (178, 'Nike dunk low - avatar.png', 10, 57),
 (179, 'Nike dunk low brown.png', 10, 57),
 (180, 'nike dunk low yellow green.png', 10, 57),
-(181, 'Nike precision - avatar.png', 8, 58),
+(181, 'Nike precision - avatar.png', 7, 58),
 (182, 'Nike precision black.png', 10, 58),
 (183, 'Nike precision purple.png', 10, 58),
-(184, 'Tatum 2 - avatar.jpg', 9, 59),
+(184, 'Tatum 2 - avatar.jpg', 7, 59),
 (185, 'tatum 2 green.jpg', 10, 59),
-(186, 'New balance dynesoft nitrel v5 - avatar.webp', 9, 60),
-(187, 'New balance dynesoft nitrel v5 gray.webp', 10, 60),
-(188, 'New balance FuelCell Propel v5 - avatar.webp', 10, 61),
+(186, 'New balance dynesoft nitrel v5 - avatar.webp', 7, 60),
+(187, 'New balance dynesoft nitrel v5 gray.webp', 9, 60),
+(188, 'New balance FuelCell Propel v5 - avatar.webp', 9, 61),
 (189, 'New balance FuelCell Propel v5 black.webp', 10, 61),
 (190, 'New balance FuelCell Propel v5 gray.webp', 10, 61),
 (191, 'New balance FuelCell Propel v5 white.webp', 10, 61),
 (192, 'New balance FuelCell SD100 v5 - avatr.webp', 10, 62),
-(193, 'MR530 MEN SNEAKERS - WHITE - avatar.jpg', 10, 63);
+(193, 'MR530 MEN SNEAKERS - WHITE - avatar.jpg', 10, 63),
+(194, 'airpanda1.png', 10, 64);
 
 -- --------------------------------------------------------
 
@@ -114,9 +108,15 @@ CREATE TABLE `inbox` (
 --
 
 INSERT INTO `inbox` (`user_id`, `order_id`, `message`, `date_sent`) VALUES
-(1, 65686878, 'Your order #65686878 has been accepted.', '2024-06-01 16:32:04.478365'),
-(1, 65686878, 'Your order #65686878 has been shipped.', '2024-06-01 16:32:24.018551'),
-(1, 65686878, 'Your order #65686878 has been delivered.', '2024-06-01 16:32:41.224421');
+(1, 6870, 'Your order #6870 has been accepted.', '2024-06-02 07:19:32.788877'),
+(1, 6870, 'Your order #6870 has been shipped.', '2024-06-02 07:20:17.445860'),
+(1, 6870, 'Your order #6870 has been delivered.', '2024-06-02 07:20:23.468094'),
+(1, 73680955, 'Your order #73680955 has been accepted.', '2024-06-02 09:25:16.599336'),
+(1, 73680955, 'Your order #73680955 has been shipped.', '2024-06-02 09:25:19.256189'),
+(1, 73680955, 'Your order #73680955 has been delivered.', '2024-06-02 09:25:20.141827'),
+(1, 8007041, 'Your order #8007041 has been accepted.', '2024-06-02 09:31:05.774397'),
+(1, 8007041, 'Your order #8007041 has been shipped.', '2024-06-02 09:31:06.793543'),
+(1, 8007041, 'Your order #8007041 has been delivered.', '2024-06-02 09:31:13.368204');
 
 -- --------------------------------------------------------
 
@@ -137,7 +137,10 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`message_id`, `user_id`, `order_id`, `message`, `received_date`) VALUES
-(29, 1, 65686878, 'User mark john oliva has received the order Nike Precision 7.', '2024-06-01 16:33:01');
+(31, 1, 65686878, 'User mark john oliva has received the order Nike Precision 7.', '2024-06-02 05:26:20'),
+(32, 1, 95617, 'User mark john oliva has received the order Tatum 2 \\\'Vortex\\\' PF.', '2024-06-02 05:27:19'),
+(34, 1, 6870, 'User mark john oliva has received the order Nike Downshifter 12.', '2024-06-02 07:20:45'),
+(35, 1, 73680955, 'User mark john oliva has received the order DynaSoft Nitrel v5.', '2024-06-02 09:26:32');
 
 -- --------------------------------------------------------
 
@@ -154,6 +157,9 @@ CREATE TABLE `orders` (
   `phone_num` varchar(225) NOT NULL,
   `payment` varchar(255) NOT NULL,
   `gcash_reference` varchar(225) NOT NULL,
+  `acc_name` varchar(225) NOT NULL,
+  `acc_number` varchar(255) NOT NULL,
+  `amount_paid` int(255) NOT NULL,
   `prod_name` varchar(255) NOT NULL,
   `size` varchar(225) NOT NULL,
   `quantity` int(255) NOT NULL,
@@ -167,8 +173,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`o_id`, `order_id`, `fullname`, `address`, `zip_code`, `phone_num`, `payment`, `gcash_reference`, `prod_name`, `size`, `quantity`, `price_total`, `date_ordered`, `status`, `user_id`) VALUES
-(69, 65686878, 'Mark Oliva', 'centro occidental polangui albay', 4506, '09914815998', 'cod', '', 'Nike Precision 7', '42', 1, 3500, '2024-06-01 16:33:01.844203', 'received', 1);
+INSERT INTO `orders` (`o_id`, `order_id`, `fullname`, `address`, `zip_code`, `phone_num`, `payment`, `gcash_reference`, `acc_name`, `acc_number`, `amount_paid`, `prod_name`, `size`, `quantity`, `price_total`, `date_ordered`, `status`, `user_id`) VALUES
+(78, 73680955, 'Mark John Oliva', 'centro occidental polangui albay', 4506, '09914815998', 'gcash', 'QQW4234123', 'mark john oliva', '09914815998', 2900, 'DynaSoft Nitrel v5', '42', 1, 2900, '2024-06-02 09:26:32.750651', 'received', 1),
+(79, 8007041, 'Mark Oliva', 'centro occidental polangui albay', 4506, '09914815998', 'gcash', 'QQW4234123', 'mark john oliva', '09914815998', 6000, 'Nike Dunk Low', '42', 1, 6000, '2024-06-02 09:31:13.305785', 'delivered', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +205,8 @@ INSERT INTO `products` (`product_id`, `prod_name`, `prod_price`, `prod_image`, `
 (60, 'DynaSoft Nitrel v5', 2900.00, 'New balance dynesoft nitrel v5 - avatar.webp', 'Ideal for active outdoor kids, the New Balance DynaSoft Nitrel v5 features a grippy AT Tread outsole for superior traction on uneven terrain. Designed for trail hikes, these running shoes also feature a springy DynaSoft midsole for a responsive and plush underfoot feel that delivers outstanding comfort.'),
 (61, 'FuelCell Propel v5', 6500.00, 'New balance FuelCell Propel v5 - avatar.webp', 'Designed with comfort and energy return top-of-mind, this versatile running shoe is crafted for runners of all styles.\r\n\r\nFeatures\r\nFuelCell midsole foam with approximately 3% bio-based content delivers a propulsive feel to help drive you forward. Bio-based content is made from renewable resources to help reduce our carbon footprint.\r\nTPU plate for a propulsive feeling\r\n  280 grams (9.9 oz)\r\nMaterial\r\nStructured upper for breathability and a lightweight fit\r\nLightweight synthetic material\r\nStyle #: MFCPRLN5'),
 (62, 'FuelCell SD100 v5', 4000.00, 'New balance FuelCell SD100 v5 - avatr.webp', 'For track athletes, the New Balance FuelCell SD100 v5 is a sleek, lightweight track spike great for sprints and jumps. The SD100 is equipped with a full-length FuelCell midsole that offers a propulsive feel perfect for racers striving to go faster. A 6-pin TPU spike plate with removable spikes provides an aggressive but forgiving ride perfect for a wide range of track events.\r\n\r\nFeatures\r\nFuelCell foam delivers a propulsive feel to help drive you forward\r\nSynthetic and mesh upper with reinforced toe for toe drag sprinters\r\nUpper features no-sew construction for a sleek fit and feel\r\n6-Pin TPU spike plate for an aggressive yet forgiving ride\r\nRemovable spikes for easy replacement\r\nAdjustable lace closure for a customized fit\r\n  154 grams (5.4 oz)\r\nStyle #: USD100L5'),
-(63, ' MR530 ', 5000.00, 'MR530 MEN SNEAKERS - WHITE - avatar.jpg', 'The original MR530 combined turn of the millennium aesthetics with the reliability of a high milage running shoe. The reintroduced 530 applies a contemporary, everyday style outlook to this performance-minded design. A segmented ABZORB midsole is paired with a classic mesh and leather overlay upper design, which utilizes sweeping curves and angles for a distinctive, high-tech look.');
+(63, ' MR530 ', 5000.00, 'MR530 MEN SNEAKERS - WHITE - avatar.jpg', 'The original MR530 combined turn of the millennium aesthetics with the reliability of a high milage running shoe. The reintroduced 530 applies a contemporary, everyday style outlook to this performance-minded design. A segmented ABZORB midsole is paired with a classic mesh and leather overlay upper design, which utilizes sweeping curves and angles for a distinctive, high-tech look.'),
+(64, 'AIR JORDAN 1', 1000.00, 'airpanda1.png', 'sfgwefosdyfwuegrifusfgwiurfuge4gugkg');
 
 -- --------------------------------------------------------
 
@@ -305,7 +313,18 @@ INSERT INTO `size` (`size_id`, `size_name`, `product_id`) VALUES
 (235, '42', 63),
 (236, '43', 63),
 (237, '44', 63),
-(238, '45', 63);
+(238, '45', 63),
+(239, '35', 64),
+(240, '36', 64),
+(241, '37', 64),
+(242, '38', 64),
+(243, '39', 64),
+(244, '40', 64),
+(245, '41', 64),
+(246, '42', 64),
+(247, '43', 64),
+(248, '44', 64),
+(249, '45', 64);
 
 -- --------------------------------------------------------
 
@@ -486,7 +505,12 @@ INSERT INTO `view_prod` (`img_id`, `img_name`, `product_id`) VALUES
 (601, 'MR530 MEN SNEAKERS - WHITE - avatar.jpg', 63),
 (602, 'MR530 MEN SNEAKERS - WHITE 1.jpg', 63),
 (603, 'MR530 MEN SNEAKERS - WHITE 2.jpg', 63),
-(604, 'MR530 MEN SNEAKERS - WHITE 3.jpg', 63);
+(604, 'MR530 MEN SNEAKERS - WHITE 3.jpg', 63),
+(605, 'airpanda1.png', 64),
+(606, 'airpanda2.png', 64),
+(607, 'airpanda3.png', 64),
+(608, 'airpanda4.png', 64),
+(609, 'airpanda5.png', 64);
 
 --
 -- Indexes for dumped tables
@@ -564,37 +588,37 @@ ALTER TABLE `view_prod`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(225) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `id` int(225) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -606,7 +630,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `view_prod`
 --
 ALTER TABLE `view_prod`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=610;
 
 --
 -- Constraints for dumped tables
