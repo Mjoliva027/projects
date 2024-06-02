@@ -127,7 +127,7 @@ html {
             <?php
 
 // Query to select total sales from orders where payment_status is '1'
-$result = $con->query("SELECT SUM(price_total) AS total_sales FROM `orders` WHERE `status` = 'delivered'");
+$result = $con->query("SELECT SUM(price_total) AS total_sales FROM `orders` WHERE `status` = 'received'");
 $totalPaidSales = 0;
 // Check if the query executed successfully
 if ($result) {
